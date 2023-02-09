@@ -6,11 +6,12 @@ import bcrypt from 'bcrypt'
 export const createUserController = async (req: Request, res: Response) => {
   const {
     name,
-    middlename,
+    middleName,
     email,
     login,
     password,
     assignments,
+    phone,
     role,
   } = req.body;
 
@@ -18,7 +19,7 @@ export const createUserController = async (req: Request, res: Response) => {
   if (!name) {
     return res.status(500).json({ status: false, message: "Nome é obrigatório!" })
   }
-  if (!middlename) {
+  if (!middleName) {
     return res.status(500).json({ status: false, message: "Sobrenome é obrigatório!" })
   }
   if (!email) {
@@ -44,11 +45,12 @@ export const createUserController = async (req: Request, res: Response) => {
   // Create object user
   const user = {
     name,
-    middlename,
+    middleName,
     email,
     login,
     password: passwordHash,
     assignments,
+    phone,
     avatar: 'https://scontent.fbhz1-2.fna.fbcdn.net/v/t39.30808-6/290120577_4694839503950467_6351043653629336023_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeFZ5DNaFHUltL-OkUC7uookVuHjna8ioMFW4eOdryKgwfK3mEOwiEqQTHFm7kKMkRGXzmyS-kNJAZOYsG7qhHI5&_nc_ohc=aQBmVHHYu_oAX8EK1qM&_nc_ht=scontent.fbhz1-2.fna&oh=00_AfCiNr_pbnglm4QP-_FLBPMJLU82DRTAK2177oHW3Gp-qA&oe=63E4A80C',
     role,
   }
@@ -86,9 +88,7 @@ export const findAllUsersController = async (req: Request, res: Response) => {
     }
 }
 
-
-// Find onde user
-export const findOndeUserController = async (req: Request, res: Response) => {
+export const findOneUserController = async (req: Request, res: Response) => {
     const id = req.params.id;
 
     try {

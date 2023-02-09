@@ -64,11 +64,12 @@ export const forgetPasswordController = async (req: Request, res: Response) => {
 
         const { data } = await axios.patch(`http://localhost:3333/api/update-user/${user._id}`, {
           name: user.name,
-          middlename: user.middlename,
+          middleName: user.middleName,
           email: user.email,
           login: user.login,
           password: `${numbers}`,
           assignments: user.assignments,
+          phone: user.phone,
           role: user.role
         })
 
@@ -77,7 +78,7 @@ export const forgetPasswordController = async (req: Request, res: Response) => {
         let html = `
         <html>
         <body>
-            <h1>${user.name}&nbsp;${user.middlename}</h1>
+            <h1>${user.name}&nbsp;${user.middleName}</h1>
             <h2>Senha atualizada com sucesso.</h2>
             <!--  <p>
                 Essa é sua nova senha <strong>${numbers}</strong>
