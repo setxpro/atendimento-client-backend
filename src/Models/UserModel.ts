@@ -10,6 +10,7 @@ interface UserProps {
   avatar: string;
   role: string;
   phone: string;
+  token: string;
 }
 
 const userSchema = new Schema<UserProps>({
@@ -21,6 +22,7 @@ const userSchema = new Schema<UserProps>({
   assignments: { type: String, required: true },
   role: {type: String, required: true},
   phone: {type: String, required: true},
+  token: { type: String },
   avatar: String,
 });
 

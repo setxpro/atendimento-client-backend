@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { User } from "../../Models/UserModel";
+import jwt from 'jsonwebtoken'
 import bcrypt from 'bcrypt'
 import axios from "axios";
 import { sendMail } from "../../Messages/email";
@@ -30,6 +31,17 @@ export const signInController = async (req: Request, res: Response) => {
             return res.status(422).json({ msg: "Senha inválida!" });
         }
 
+        // Create token
+         const token = jwt.sign({
+          id: user._id,
+         }, process.env.SECRET as string, {
+           expiresIn: "2h" 
+         })
+
+        // save user token
+         user.token = token;
+
+        // return new user
         res.status(200).json({status: true, message: "Authenticated!", user});
       } catch (error) {
     res

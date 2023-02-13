@@ -35,6 +35,25 @@ export const findAllTasks = async (req: Request, res: Response) => {
     }
 }
 
+export const updateTask = async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const { isCompleted } = req.body;
+
+  const completed = {
+    isCompleted,
+  }
+
+  try {
+
+    await Task.updateOne({_id: id}, completed);
+    res.status(200).json({message: "Atualizado com sucesso!"})
+
+  } catch (error) {
+    
+  }
+
+}
+
 export const deleteTask = async (req: Request, res: Response) => {
   const { id } = req.params;
 

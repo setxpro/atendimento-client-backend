@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { User } from "../../Models/UserModel";
 import bcrypt from 'bcrypt'
+import jwt from 'jsonwebtoken'
 
 // Register a new user
 export const createUserController = async (req: Request, res: Response) => {
@@ -55,6 +56,8 @@ export const createUserController = async (req: Request, res: Response) => {
     role,
   }
 
+
+
   try {
     // Check if user exists
     const checkIfUserExists = await User.findOne({login: login})
@@ -62,8 +65,15 @@ export const createUserController = async (req: Request, res: Response) => {
     if (checkIfUserExists) {
         return res.status(422).json({status: false, message: "Usuário já cadastrado no sistma!"})
     }
-
+    
     await User.create(user);
+
+
+    // Create token
+
+
+    // Save token
+
 
     res.status(201).json({status: true, message: "Usuário cadastrado com sucesso!"})
 

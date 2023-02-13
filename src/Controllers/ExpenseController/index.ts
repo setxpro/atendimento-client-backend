@@ -23,9 +23,7 @@ export const createExpense = async (req: Request, res: Response) => {
     }
 
     try {
-
         await Expense.create(expense);
-
         res.status(200).json({status: true, message: "Inserido com sucesso!"})
         
     } catch (error) {
