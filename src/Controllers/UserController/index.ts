@@ -111,12 +111,14 @@ export const updateUserController = async (req: Request, res: Response) => {
     const id = req.params.id;
     const {
         name,
-        middlename,
+        middleName,
         email,
         login,
         password,
         assignments,
-        role
+        role,
+        phone,
+        avatar
     } = req.body;
 
     const salt = await bcrypt.genSalt(12);
@@ -124,12 +126,14 @@ export const updateUserController = async (req: Request, res: Response) => {
 
     const user = {
         name,
-        middlename,
+        middleName,
         email,
         login,
         password: passwordHash,
         assignments,
-        role
+        role,
+        phone,
+        avatar
     }
 
     try {
